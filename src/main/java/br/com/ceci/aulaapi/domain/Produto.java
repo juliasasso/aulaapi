@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto implements Serializable{
@@ -20,16 +22,23 @@ public class Produto implements Serializable{
 	private String nome;
 	private BigDecimal preco;
 	
+	@ManyToOne
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
+	
 	public Produto() {
 		
 	}
 
-	public Produto(Integer id, String nome, BigDecimal preco) {
+	
+	public Produto(Integer id, String nome, BigDecimal preco, Categoria categoria) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
+		this.categoria = categoria;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -54,6 +63,16 @@ public class Produto implements Serializable{
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
 
 	@Override
 	public int hashCode() {
