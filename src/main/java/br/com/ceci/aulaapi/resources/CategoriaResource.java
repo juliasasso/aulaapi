@@ -1,6 +1,7 @@
 package br.com.ceci.aulaapi.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,11 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService categoriaService;
 
+	@GetMapping()
+	public List<Categoria> listar(){
+		return categoriaService.listarTodas();
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 		Categoria obj = categoriaService.find(id);

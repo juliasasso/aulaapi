@@ -1,5 +1,7 @@
+
 package br.com.ceci.aulaapi.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,11 @@ import br.com.ceci.aulaapi.services.exceptions.ObjectNotFoundException;
 public class CategoriaService {
 	@Autowired
 private CategoriaRepository categoriaRepository;
+	
+	public List<Categoria> listarTodas(){
+		return categoriaRepository.findAll();
+	}
+	
 	 public Categoria find(Integer id) {
 		 Optional<Categoria> obj = categoriaRepository.findById(id);
 		 return obj.orElseThrow(() -> new ObjectNotFoundException(
